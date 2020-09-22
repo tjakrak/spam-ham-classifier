@@ -1,7 +1,13 @@
+/* Project 1 Ham or Spam
+ *  Ryan Giovanni Tjakrakartadinata
+ *  CS 514 - 01
+ * */
+
 /* A freqDist is a wrapper for a Map that will tell us, for a given list of words, how often each word appeared
 in a corpus. */
 
 import java.util.HashMap;
+
 public class FreqDist {
     HashMap<String, Integer> frequencies;
     int totalCount;
@@ -27,19 +33,18 @@ public class FreqDist {
         this.totalCount = totalCount;
     }
 
+    /* Storing new words or existing words and keep track of the total words and each words*/
     public void add(String newWord) {
-        int val;
         totalCount++;
         if (frequencies.containsKey(newWord)) {
-            val = frequencies.get(newWord);
-            val = val + 1;
-            frequencies.put(newWord, val);
+            frequencies.put(newWord, frequencies.get(newWord) + 1);
         } else {
             frequencies.put(newWord, 1);
         }
-    }
-    /* if a word is not present in our frequency dictionary, assume it has a count of 1. */
 
+    }
+
+    /* if a word is not present in our frequency dictionary, assume it has a count of 1. */
     public int get(String newWord) {
         if(frequencies.containsKey(newWord)) {
             return frequencies.get(newWord);
