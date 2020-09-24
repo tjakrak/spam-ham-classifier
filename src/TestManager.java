@@ -74,6 +74,8 @@ public class TestManager {
         /* take 50 ham test emails, compute loglikelihood */
 
         File spamTestFolder = new File("spamtest");
+        int ctcorrect = 0;
+        int ctincorrect = 0;
         for (String filename : spamTestFolder.list()) {
             p = new Processor("spamtest/" + filename);
             words = p.parseFile();
@@ -82,14 +84,20 @@ public class TestManager {
             System.out.println(spamval + " " + hamval);
             if (spamval > hamval) {
                 System.out.println("Correct");
+                ctcorrect++;
             } else {
                 System.out.println("Incorrect");
+                ctincorrect++;
             }
         }
+        System.out.println("correct: " + ctcorrect);
+        System.out.println("incorrect: " + ctincorrect);
 
         /* take 50 spam test emails, compute loglikelihood */
 
         File hamTestFolder = new File("hamtest");
+        ctcorrect = 0;
+        ctincorrect = 0;
         for (String filename : hamTestFolder.list()) {
             p = new Processor("hamtest/" + filename);
             words = p.parseFile();
@@ -98,11 +106,14 @@ public class TestManager {
             System.out.println(spamval + " " + hamval);
             if (spamval < hamval) {
                 System.out.println("Correct");
+                ctcorrect++;
             } else {
                 System.out.println("Incorrect");
+                ctincorrect++;
             }
-
         }
+        System.out.println("correct: " + ctcorrect);
+        System.out.println("incorrect: " + ctincorrect);
     }
 }
 
